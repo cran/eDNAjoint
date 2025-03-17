@@ -1,7 +1,7 @@
 Package: eDNAjoint
 Title: Joint Modeling of Traditional and Environmental DNA Survey Data
         in a Bayesian Framework
-Version: 0.3.1
+Version: 0.3.2
 Maintainer: Abigail G. Keller <agkeller@berkeley.edu>
 Authors@R: 
     c(person("Abigail G.", "Keller", role = c("aut", "cre"), email="agkeller@berkeley.edu"),
@@ -28,10 +28,10 @@ LazyData: true
 Suggests: bayesplot, knitr, rmarkdown, testthat (>= 3.0.0)
 Config/testthat/edition: 3
 NeedsCompilation: yes
-Packaged: 2025-01-25 17:08:15 UTC; jovyan
+Packaged: 2025-03-17 03:54:33 UTC; jovyan
 Author: Abigail G. Keller [aut, cre],
   Ryan P. Kelly [ctb],
   Chitra M. Saraswati [rev],
   Saras M. Windecker [rev]
 Repository: CRAN
-Date/Publication: 2025-01-25 17:40:02 UTC
+Date/Publication: 2025-03-17 04:20:02 UTC
