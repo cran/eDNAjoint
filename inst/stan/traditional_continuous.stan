@@ -30,17 +30,17 @@ parameters {
   // beta param for gamma distribution
   vector<lower = 0.01>[Nloc] beta;
   // catchability coefficients
-  vector<lower = -0.99999>[nparams] q_trans;
+  vector[nparams] q_log;
 }
 
 transformed parameters {
   // traditional sample-specific catchability coefficient
-  array[(ctch == 1) ? nparams + 1 :  0] real<lower = 0> coef;
+  array[(ctch == 1) ? nparams + 1 :  0] real coef;
   // transformed traditional data so that E > 0
   array[n_C] real<lower = 0> E_trans;
 
-  if (ctch == 1) {
-    coef = to_array_1d(append_row(1, 1 + q_trans));
+  if (ctch) {
+    coef = to_array_1d(append_row(0, q_log));
   }
 
   for (j in 1:n_C) {
@@ -53,9 +53,7 @@ model {
   array[n_C] real lambda;
   lambda = get_lambda_continuous(ctch, coef, mat, alpha, R_ind, n_C);
 
-  for (j in 1:n_C) {
-    E_trans[j] ~ gamma(lambda[j], beta[R_ind[j]]);  // Eq. 1.1
-  }
+  E_trans ~ gamma(lambda, beta[R_ind]);  // Eq. 1.1
 
   alpha ~ gamma(alphapriors[1], alphapriors[2]);
   beta ~ gamma(betapriors[1], betapriors[2]);
@@ -68,8 +66,8 @@ generated quantities{
 
   ////////////////////////////////////
   // transform to interpretable params
-  if (ctch == 1) {
-    q = q_trans + 1;
+  if (ctch) {
+    q = exp(q_log);
   }
 
   mu = calc_mu_trad_continuous(Nloc, nparams, alpha, beta, q, ctch);

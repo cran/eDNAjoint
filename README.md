@@ -23,9 +23,13 @@ to jointly estimate parameters like the false positive probability of
 eDNA detection and expected catch rate at a site. Optional model
 variations allow inclusion of site-level covariates that scale the
 sensitivity of eDNA sampling relative to traditional sampling, as well
-as estimation of catchability coefficients when multiple traditional
+as estimation of gear scaling coefficients when multiple traditional
 gear types are used. Additional functions in the package facilitate
 interpretation of model fits.
+
+Check out a [paper about the
+package](https://doi.org/10.1111/2041-210X.70000) in Methods in Ecology
+and Evolution.
 
 <div style="text-align: center;">
 
@@ -77,8 +81,8 @@ detection, $p_{10}$:
 ``` r
 # summarize p10 posterior
 joint_summarize(goby_fit$model, par = "p10")
-#>      mean se_mean    sd  2.5% 97.5%  n_eff  Rhat
-#> p10 0.004   0.001 0.007 0.001 0.008 37.305 1.077
+#>      mean se_mean    sd  2.5% 97.5%    n_eff Rhat
+#> p10 0.003       0 0.001 0.001 0.007 13482.83    1
 ```
 
 Or to find the number of eDNA samples and traditional survey samples
@@ -103,6 +107,16 @@ You can find much more detailed examples of the functions in *eDNAjoint*
 and the model underlying the package in the [package
 vignette](https://ednajoint.netlify.app/).
 
+## Citation
+
+Using *eDNAjoint* in a manuscript? Please consider citing either the
+manuscript about the package:
+
+Keller, A.G., & Kelly, R.P. (2025). eDNAjoint: An R package for
+interpreting paired or semi-paired environmental DNA and traditional
+survey data in a Bayesian framework. *Methods in Ecology and Evolution*,
+00, 1–9. <https://doi.org/10.1111/2041-210X.70000>
+
 ## Contributing
 
 Interested in contributing to this package? See [some notes on
@@ -115,6 +129,11 @@ Conduct](https://ropensci.org/code-of-conduct/). By contributing to this
 project you agree to abide by its terms.
 
 ## References
+
+Keller, A.G., & Kelly, R.P. (2025). eDNAjoint: An R package for
+interpreting paired or semi-paired environmental DNA and traditional
+survey data in a Bayesian framework. *Methods in Ecology and Evolution*,
+00, 1–9. <https://doi.org/10.1111/2041-210X.70000>
 
 Keller, A.G., Grason, E.W., McDonald, P.S., Ramon-Laca, A., Kelly, R.P.
 (2022). Tracking an invasion front with environmental DNA. *Ecological
